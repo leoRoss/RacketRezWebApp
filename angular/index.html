@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="racketRez">
+<head>
+  <title>GT Racket Rez</title>
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src ="angularApp.js"></script>
+</head>
+<body ng-controller="ReservationController as res">
+
+<div ng-repeat="reservation in res.reservations">
+  <h3>Reserved Court {{reservation.court}} at {{reservation.time}}</h3>
+  <p ng-show="reservation.guests" ng-repeat="guest in reservation.guests">
+    {{guest}}
+  </p>
+</div>
+
+</body>
+</html>
