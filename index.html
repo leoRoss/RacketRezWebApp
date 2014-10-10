@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>My Angular App!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="racketRez" ng-controller="MainCtrl">
+  <div style="
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    background-color: #cae1ff;" align = "center">
+	<br /><br />
+   GT Account: <br /><input type="text" ng-model="Username"></input> <br />
+   Password: <br /><input type="password" ng-model="Password"></input> <br />
+
+  <button type="submit">Login</button>
+  <button type="submit" ng-click=clear()>Clear</button> <br />  <br /> 
+  <input type ="checkbox" ng-model="Warning"> Warn me before logging me into other sites.
+  
+</div>
+</body>
+</html>
