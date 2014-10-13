@@ -2,11 +2,23 @@
   var app = angular.module('racketRez', []);
 
   app.controller('ReservationController', ['$http', function($http) {
-      var res = this;
+    var res = this;
 
-      res.reservations = [];
-      $http.get('reservations.json').success(function(data) {
-        res.reservations = data;
-      });
-    }]);
+    res.reservations = [];
+    $http.get('reservations.json').success(function(data) {
+      res.reservations = data;
+    });
+  }]);
+
+  app.controller('PanelController', function() {
+    this.tab = 1;
+
+    this.selectTab = function(setTab) {
+      this.tab = setTab;
+    };
+
+    this.isSelected = function(checkTab) {
+      return this.tab === checkTab;
+    };
+  });
 })();

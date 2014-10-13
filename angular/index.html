@@ -8,12 +8,47 @@
 </head>
 <body ng-controller="ReservationController as res">
 
-<div ng-repeat="reservation in res.reservations">
-  <h3>Reserved Court {{reservation.court}} at {{reservation.time}}</h3>
-  <p ng-show="reservation.guests" ng-repeat="guest in reservation.guests">
-    {{guest}}
-  </p>
-</div>
+<section ng-controller="PanelController as panel">
+  <ul class="nav nav-pills">
+    <li ng-class="{ active: panel.isSelected(1) }">
+      <a href ng-click="panel.selectTab(1)">Court 1</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(2) }">
+      <a href ng-click="panel.selectTab(2)">Court 2</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(3) }">
+      <a href ng-click="panel.selectTab(3)">Court 3</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(4) }">
+      <a href ng-click="panel.selectTab(4)">Court 4</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(5) }">
+      <a href ng-click="panel.selectTab(5)">Court 5</a>
+    </li>
+  </ul>
+
+  <div class="panel" ng-show="panel.isSelected(1)">
+    <h3>Court 1</h3>
+  </div>
+  <div class="panel" ng-show="panel.isSelected(2)">
+    <h3>Court 2</h3>
+  </div>
+  <div class="panel" ng-show="panel.isSelected(3)">
+    <h3>Court 3</h3>
+  </div>
+  <div class="panel" ng-show="panel.isSelected(4)">
+    <h3>Court 4</h3>
+  </div>
+  <div class="panel" ng-show="panel.isSelected(5)">
+    <h3>Court 5</h3>
+  </div>
+  <div ng-repeat="reservation in res.reservations" ng-show="panel.isSelected(reservation.court)">
+    <h3>Reserved Court {{reservation.court}} at {{reservation.time}}</h3>
+    <p ng-show="reservation.guests" ng-repeat="guest in reservation.guests">
+      {{guest}}
+    </p>
+  </div>
+</section>
 
 </body>
 </html>
