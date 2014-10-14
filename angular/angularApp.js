@@ -11,6 +11,15 @@
     $http.get('reservations.json').success(function(data) {
       res.reservations = data;
     });
+
+    this.addReservation = function() {
+      this.reservations.push({
+        owner: 'current user',
+        court: parseInt($('#court').val(), 10),
+        time: $('#datetime').data("DateTimePicker").getDate().format('ddd, MMM YYYY [at] h:mm A'),
+        guests: []
+      });
+    };
   }]);
 
   app.controller('PanelController', function() {

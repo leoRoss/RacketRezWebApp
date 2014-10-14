@@ -2,12 +2,12 @@
   {
     "owner": "mhooper6",
     "court": 3,
-    "time": "Oct 9, 2014 2:30 PM EST",
+    "time": "Oct 9, 2014 2:30 PM",
     "guests": ["adam", "bao", "kenny", "leo"]
   }, {
     "owner": "mhooper6",
     "court": 5,
-    "time": "Oct 11, 2014 9:00 AM EST",
+    "time": "Oct 11, 2014 9:00 AM",
     "guests": []
   }
 ]
