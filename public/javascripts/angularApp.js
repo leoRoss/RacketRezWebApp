@@ -8,7 +8,7 @@
     res.reservations = [];
 
     // cheap way to mock data
-    $http.get('reservations.json').success(function(data) {
+    $http.get('javascripts/reservations.json').success(function(data) {
       res.reservations = data;
     });
 
