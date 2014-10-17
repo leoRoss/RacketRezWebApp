@@ -1,12 +1,4 @@
-angular.module('racketRez', [])
-.controller('MainCtrl', [
-'$scope',
-function($scope){
-  $scope.clear = function(){
-  $scope.Username = "";
-  $scope.Password = "";
-};
-}]);
+
 
 var express = require('express');
 var path = require('path');
