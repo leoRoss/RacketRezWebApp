@@ -1,11 +1,94 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html ng-app="racketRez">
+<head>
+  <title>GT Racket Rez</title>
+  <link rel="stylesheet" type="text/css" href="javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://eonasdan.github.io/bootstrap-datetimepicker/content/bootstrap-datetimepicker.css">
+  <link rel="stylesheet" type="text/css" href="javascripts/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
+
+  <script type="text/javascript" src="javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="javascripts/bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="javascripts/bower_components/moment/moment.js"></script>
+  <script type="text/javascript" src="javascripts/bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
+  <script type="text/javascript" src="javascripts/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src ="javascripts/angularApp.js"></script>
+</head>
+<body ng-controller="ReservationController as res">
+
+<h2>CRC Rauqetball Reservations</h2>
+
+<!-- datepicker -->
+<h4>Make your reservation</h4>
+<!-- reservation form -->
+<div class="container">
+  <form role="form" class="form-inline" ng-submit="res.addReservation()">
+    <div class="form-group">
+      <label for="datetime">Enter date and time</label>
+      <div class="input-group date" id="datetime">
+        <input type="text" class="form-control" />
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="court">Select court</label>
+      <div class="input-group">
+        <select class="selectpicker" id="court">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Reserve</button>
+      </div>      
+  </form>
+  <script type="text/javascript">
+    var today = moment();
+    $('#datetime').datetimepicker({
+      enabledDates: [
+        moment(today),
+        moment(today).add(1, 'days'),
+        moment(today).add(2, 'days')
+      ],
+      minuteStepping: 15
+    });
+    $('.selectpicker').selectpicker();
+  </script>
+</div>
+
+<!-- display user's reservations -->
+<section ng-controller="PanelController as panel">
+  <ul class="nav nav-tabs">
+    <li ng-class="{ active: panel.isSelected(1) }">
+      <a href ng-click="panel.selectTab(1)">Court 1</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(2) }">
+      <a href ng-click="panel.selectTab(2)">Court 2</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(3) }">
+      <a href ng-click="panel.selectTab(3)">Court 3</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(4) }">
+      <a href ng-click="panel.selectTab(4)">Court 4</a>
+    </li>
+    <li ng-class="{ active: panel.isSelected(5) }">
+      <a href ng-click="panel.selectTab(5)">Court 5</a>
+    </li>
+  </ul>
+
+  <div ng-hide="res.reservations.length">
+    <h3>No reservations</h3>
+  </div>
+  <div ng-repeat="reservation in res.reservations" ng-show="panel.isSelected(reservation.court)">
+    <h3>Reserved Court {{reservation.court}} for {{reservation.time}}</h3>
+    <p ng-show="reservation.guests" ng-repeat="guest in reservation.guests">
+      {{guest}}
+    </p>
+  </div>
+</section>
+
+</body>
 </html>
