@@ -11,4 +11,4 @@ var ReservationSchema = new mongoose.Schema({
 	goggles: Number,
 });
 
-var Reservation = mongoose.model('reservations', ReservationSchema);
+mongoose.model('Reservation', ReservationSchema);

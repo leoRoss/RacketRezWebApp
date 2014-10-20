@@ -1,6 +1,5 @@
 (function() {
-
-  var app = angular.module('racketRez', []);
+	var app = angular.module('racketRez', []);
 
   app.controller('ReservationController', ['$http', function($http) {
     var res = this;
